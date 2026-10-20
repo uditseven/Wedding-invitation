@@ -1,3 +1,15 @@
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 .hero {
     position: relative;
     width: 100%;
@@ -14,7 +26,12 @@
     box-sizing: border-box;
 }
 
-/* Ensure any injected slideshow container fills the hero banner properly */
+.hero h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
 .hero-slideshow {
     position: absolute;
     top: 0;
@@ -39,4 +56,54 @@
 
 .hero-slide.active {
     opacity: 1;
+}
+
+.section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.countdown-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.countdown-unit {
+    min-width: 65px;
+    padding: 0.5rem;
+}
+
+#schedule-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#schedule-list li {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+@media (min-width: 600px) {
+    #schedule-list li {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+footer {
+    width: 100%;
+    padding: 2rem 1rem;
+    text-align: center;
 }
