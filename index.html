@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Udit weds Jagriti</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,8 +24,7 @@
 </svg>
 </button>
 <main id="app" aria-live="polite">
-<!-- Added direct inline background/hero image support as a fallback incase JS misses it -->
-<section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://lh3.googleusercontent.com/pw/AP1GczOAWBFfxhI5ZioQdjKh11fwCFwt6eCjBoe6hKXhKjaqvVsNZxgDl8r1_es1qrzLe9jYMOQqh9lHofszfdSX-VbJjhmrUbJwL6XWb4POYJxEwrS2r9YVzAUByAiY9Q6UHiXLFDE8EkXJOMulw-sWg1JY=w651-h869-s-no-gm?authuser=0'); background-size: cover; background-position: center;">
+<section class="hero">
 <h1 id="event-title">Loading…</h1>
 <p class="subtitle" id="event-subtitle"></p>
 <div class="hero-meta">
@@ -41,7 +40,7 @@
 <a id="google-calendar-link" target="_blank" rel="noopener">Add to Google Calendar</a>
 </div></div>
 </section>
-<section class="section event-details" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fthumbnails%2F053%2F808%2F762%2Fsmall_2x%2Fwedding-party-decoration-scene-background-free-photo.jpeg&f=1&nofb=1&ipt=af392c7a7c1d3515ae11ce9705286aee834e87c7aac963eb4d28ae5f3bf3dd2b&ipo=images'); background-size: cover; background-blend-mode: overlay;">
+<section class="section event-details">
 <h2>Event Details</h2>
 <div class="event-datetime">
 <div><strong>Date:</strong> <time id="event-date"></time></div>
@@ -55,24 +54,19 @@
 </address>
 </section>
 <section class="section" id="schedule-section" hidden>
-<h2>Schedule</h2><ul id="schedule-list"></ul>
+<h2>Schedule & Activities</h2>
+<ul id="schedule-list"></ul>
 </section>
 <section class="section" id="quotes-section" hidden>
 <h2>Words of Inspiration</h2>
 <div class="quotes-container" id="quotes-container"></div>
 </section>
 <footer>
-<div class="footer-branding">
-<!-- Removed the empty logo container causing the broken circular icon -->
 <div class="footer-info">
 <p class="hosted-by" id="footer-credits-label"></p>
 <p class="copyright">
 <span id="footer-copyright"></span>
-<!-- Cleaned up template container to prevent stray pipes if empty -->
-<span id="footer-template-container" hidden><span id="footer-template-label"></span> <a id="footer-template-link" href="#"></a></span>
-</p>
-<p id="footer-repo-container" class="repo-info" hidden>
-<a id="footer-repo-link" href="#"></a>
+<span id="footer-template-container" hidden> | <span id="footer-template-label"></span> <a id="footer-template-link" href="#"></a></span>
 </p>
     <div class="social-links" id="social-links" hidden>
         <a id="instagram-link" class="social-link" target="_blank" rel="noopener">
@@ -82,9 +76,8 @@
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
             </svg>
         </a>
+        <span id="instagram-label">Follow on Instagram</span>
     </div>
-<span id="instagram-label">Follow on Instagram</span>
-</div>
 </div>
 <p id="footer-text"></p>
 </footer>
