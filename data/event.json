@@ -19,7 +19,7 @@
     },
     "quotes": [],
     "social": {
-        "instagram": "url?id=26"
+        "instagram": "https://www.instagram.com/udit_seven/"
     },
     "event": {
         "title": "Udit weds Jagriti",
@@ -43,24 +43,28 @@
             "date": "30th Nov 2026, Monday",
             "time": "04:00 PM onwards",
             "label": "Sangeet, Tilak & Engagement Ceremony",
+            "location": "Bari Maidan Clubhouse",
             "bg": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.WYQrZi5tYMj0q0oE4pC1CwHaEM%3Fr%3D0%26pid%3DApi&f=1&ipt=397c0c9d3218137a18a9c88b5de3971baa5ed2fde27f2d374b989711cb3eb3ae&ipo=images"
         },
         {
             "date": "2nd Dec 2026, Wednesday",
             "time": "10:00 AM onwards",
             "label": "Haldi Matkor",
+            "location": "Bari Maidan Clubhouse",
             "bg": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%2Fid%2FOIP.qNtbULG6udMYAYKmA8MGbQHaE7%3Fr%3D0%26pid%3DApi&f=1&ipt=5302cf7471142e0a8d9e6e79ab53686b111d84854a9c70eb4b7be8669726d61a&ipo=images"
         },
         {
             "date": "3rd Dec 2026, Thursday",
             "time": "07:00 PM onwards",
             "label": "Wedding Ceremony",
+            "location": "Bari Maidan Clubhouse",
             "bg": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%2Fid%2FOIP.vjyJ9LxPtyVRa3Brt4TTHAHaFS%3Fr%3D0%26pid%3DApi&f=1&ipt=832918220e56d6f7d21b35464fe740061e2d7de4ffa27ed7f29d120e3e65cc64&ipo=images"
         },
         {
             "date": "5th Dec 2026, Saturday",
             "time": "08:00 PM onwards",
             "label": "Dinner & Reception",
+            "location": "Bari Maidan Clubhouse",
             "bg": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.cNC_LSD6FHakoqgoqA6XzAHaE8%3Fr%3D0%26pid%3DApi&f=1&ipt=9cbd8c931d1625ff14111c6cb391dab3d1fc716aa6d248a9516a67591315a8d0&ipo=images"
         }
     ],
