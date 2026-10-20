@@ -41,7 +41,6 @@
     if (sections.footer === false) { var ft = document.querySelector("footer"); if (ft) ft.remove(); }
     if (sections.rsvp === false) { rm("rsvp"); }
 
-    // Fully populate all schedule events and activities across days
     if (sched.length) { 
       sh("schedule-section"); 
       var sl = document.getElementById("schedule-list"); 
@@ -105,7 +104,6 @@
       } 
     }
 
-    // Fully working Audio & Overlay Unlock Handlers
     if (music.enabled && music.audioUrl) { 
       sh("audio-control"); 
       var ae = new Audio(music.audioUrl); 
@@ -186,7 +184,6 @@
       }); 
     }
 
-    // Hero image slideshow handling
     var images = design.heroImages || [];
     if (images.length) { 
       var hero = document.querySelector(".hero"); 
@@ -212,7 +209,6 @@
       } 
     }
 
-    // Section background handling
     var secBackgrounds = design.sectionBackgrounds || [];
     if (secBackgrounds.length > 0) {
       var detailsSec = document.querySelector(".event-details");
