@@ -59,8 +59,12 @@
     "design": {
         "theme": "light",
         "accentColor": "#6366f1",
-        "heroImages": [],
-        "sectionBackgrounds": []
+        "heroImages": [
+            "https://lh3.googleusercontent.com/pw/AP1GczOAWBFfxhI5ZioQdjKh11fwCFwt6eCjBoe6hKXhKjaqvVsNZxgDl8r1_es1qrzLe9jYMOQqh9lHofszfdSX-VbJjhmrUbJwL6XWb4POYJxEwrS2r9YVzAUByAiY9Q6UHiXLFDE8EkXJOMulw-sWg1JY=w651-h869-s-no-gm?authuser=0"
+        ],
+        "sectionBackgrounds": [
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fthumbnails%2F053%2F808%2F762%2Fsmall_2x%2Fwedding-party-decoration-scene-background-free-photo.jpeg&f=1&nofb=1&ipt=af392c7a7c1d3515ae11ce9705286aee834e87c7aac963eb4d28ae5f3bf3dd2b&ipo=images"
+        ]
     },
     "music": {
         "enabled": true,
