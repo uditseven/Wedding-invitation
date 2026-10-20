@@ -35,22 +35,22 @@
 
 <main id="app" aria-live="polite">
     <section class="hero">
+        <!-- Top Rectangular Glass Countdown Section -->
+        <div id="countdown" class="countdown" hidden>
+            <span class="countdown-label">Event starts in</span>
+            <div class="countdown-grid">
+                <div class="countdown-unit"><strong id="cd-days">0</strong><span>Days</span></div>
+                <div class="countdown-unit"><strong id="cd-hours">00</strong><span>Hours</span></div>
+                <div class="countdown-unit"><strong id="cd-minutes">00</strong><span>Minutes</span></div>
+                <div class="countdown-unit"><strong id="cd-seconds">00</strong><span>Seconds</span></div>
+            </div>
+        </div>
+
         <div class="hero-content-wrapper">
             <h1 id="event-title">Loading…</h1>
             <p class="subtitle" id="event-subtitle"></p>
-            <div class="hero-meta">
-                <div id="countdown" class="countdown" hidden>
-                    <span class="countdown-label">Event starts in</span>
-                    <div class="countdown-grid">
-                        <div class="countdown-unit"><strong id="cd-days">0</strong><span>Days</span></div>
-                        <div class="countdown-unit"><strong id="cd-hours">00</strong><span>Hours</span></div>
-                        <div class="countdown-unit"><strong id="cd-minutes">00</strong><span>Minutes</span></div>
-                        <div class="countdown-unit"><strong id="cd-seconds">00</strong><span>Seconds</span></div>
-                    </div>
-                </div>
-                <div id="calendar-actions" hidden style="margin-top: 1rem;">
-                    <a id="google-calendar-link" class="primary-btn" target="_blank" rel="noopener">Add to Google Calendar</a>
-                </div>
+            <div id="calendar-actions" hidden style="margin-top: 1rem;">
+                <a id="google-calendar-link" class="primary-btn" target="_blank" rel="noopener">Add to Google Calendar</a>
             </div>
         </div>
     </section>
