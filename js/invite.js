@@ -41,7 +41,7 @@
     if (sections.footer === false) { var ft = document.querySelector("footer"); if (ft) ft.remove(); }
     if (sections.rsvp === false) { rm("rsvp"); }
 
-    // Populate all schedule events and activities across days
+    // Fully populate all schedule events and activities across days
     if (sched.length) { 
       sh("schedule-section"); 
       var sl = document.getElementById("schedule-list"); 
@@ -116,22 +116,30 @@
       var overlay = document.getElementById("audio-overlay");
       var openBtn = document.getElementById("open-invite-btn");
 
-      function unlockAudio() {
+      function unlockAudio(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+
         ae.play().then(function() {
           playing = true;
           audioBtn.style.opacity = "1";
         }).catch(function(err) {
-          console.log("Audio autoplay prevented:", err);
+          console.log("Audio autoplay restricted:", err);
         });
 
         if (overlay) {
           overlay.style.opacity = "0";
-          setTimeout(function() { overlay.remove(); }, 500);
+          setTimeout(function() { 
+            overlay.remove(); 
+          }, 500);
         }
       }
 
       if (openBtn) {
         openBtn.addEventListener("click", unlockAudio);
+        openBtn.addEventListener("touchend", unlockAudio);
       }
       if (overlay) {
         overlay.addEventListener("click", unlockAudio);
