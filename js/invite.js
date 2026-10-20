@@ -41,6 +41,7 @@
     if (sections.footer === false) { var ft = document.querySelector("footer"); if (ft) ft.remove(); }
     if (sections.rsvp === false) { rm("rsvp"); }
 
+    // Fully populate all schedule dates and activities
     if (sched.length) { 
       sh("schedule-section"); 
       var sl = document.getElementById("schedule-list"); 
@@ -48,8 +49,8 @@
         sl.innerHTML = "";
         sched.forEach(function(it) { 
           var li = document.createElement("li"); 
-          var dateBadge = it.date ? '<span class="schedule-date" style="display:block; font-size:0.85em; opacity:0.8; margin-bottom:0.2rem;">' + it.date + '</span>' : '';
-          li.innerHTML = '<div class="schedule-time-box">' + dateBadge + '<span><strong>' + (it.time || "") + '</strong></span></div><div class="schedule-label-box"><span>' + (it.label || "") + '</span></div>'; 
+          var dateBadge = it.date ? '<span style="font-size:0.85rem; opacity:0.7; display:block; margin-bottom:2px;">' + it.date + '</span>' : '';
+          li.innerHTML = '<div>' + dateBadge + '<strong>' + (it.time || "") + '</strong></div><span>' + (it.label || "") + '</span>'; 
           sl.appendChild(li); 
         }); 
       } 
@@ -104,28 +105,49 @@
       } 
     }
 
+    // Audio handling with overlay permission unlock
     if (music.enabled && music.audioUrl) { 
       sh("audio-control"); 
       var ae = new Audio(music.audioUrl); 
       ae.loop = music.loop !== false; 
       ae.volume = music.volume || 0.3; 
       var playing = false; 
-      var btn = document.getElementById("audio-control");
-      
-      btn.addEventListener("click", function() { 
+      var audioBtn = document.getElementById("audio-control");
+      var overlay = document.getElementById("audio-overlay");
+
+      function startAudio() {
+        ae.play().then(function() {
+          playing = true;
+          audioBtn.style.opacity = "1";
+        }).catch(function(err) {
+          console.log("Audio play deferred:", err);
+        });
+        if (overlay) {
+          overlay.style.opacity = "0";
+          setTimeout(function() { overlay.remove(); }, 500);
+        }
+      }
+
+      if (overlay) {
+        overlay.addEventListener("click", startAudio);
+      }
+
+      audioBtn.addEventListener("click", function(e) { 
+        e.stopPropagation();
         if (playing) { 
           ae.pause(); 
           playing = false;
-          btn.style.opacity = "0.6";
+          audioBtn.style.opacity = "0.5";
         } else { 
           ae.play().then(function() {
             playing = true;
-            btn.style.opacity = "1";
-          }).catch(function(error) {
-            console.log("Audio playback blocked:", error);
-          }); 
+            audioBtn.style.opacity = "1";
+          }).catch(function(err) { console.log(err); }); 
         } 
       }); 
+    } else {
+      var ov = document.getElementById("audio-overlay");
+      if (ov) ov.remove();
     }
 
     if (social.instagram) { 
@@ -133,10 +155,6 @@
       var ig = document.getElementById("instagram-link"); 
       if (ig) { 
         ig.href = social.instagram; 
-        var lbl = document.getElementById("instagram-label"); 
-        if (lbl) { 
-          lbl.textContent = social.instagram.replace(/https?:\/\/(www\.)?instagram\.com\//, "").replace(/\/$/, "") || "Follow on Instagram"; 
-        } 
       } 
     }
 
@@ -145,16 +163,6 @@
     if (footer.credits) { 
       st("footer-credits-label", footer.credits.designByLabel ? footer.credits.designByLabel + " " + footer.credits.authorName : ""); 
       st("footer-copyright", "© " + (footer.credits.copyrightYear || new Date().getFullYear())); 
-      
-      if (footer.credits.templateAuthor || footer.credits.templateLabel) {
-        sh("footer-template-container");
-        st("footer-template-label", footer.credits.templateLabel); 
-        var tl = document.getElementById("footer-template-link"); 
-        if (tl) { 
-          tl.textContent = footer.credits.templateAuthor || ""; 
-          tl.href = footer.credits.templateLink || "#"; 
-        }
-      }
     }
 
     var simpleToggle = document.getElementById("simple-mode-toggle");
@@ -189,11 +197,20 @@
         } 
       } 
     }
+
+    var secBackgrounds = design.sectionBackgrounds || [];
+    if (secBackgrounds.length > 0) {
+      var detailsSec = document.querySelector(".event-details");
+      if (detailsSec && secBackgrounds[0]) {
+        detailsSec.style.backgroundImage = "url(" + secBackgrounds[0] + ")";
+        detailsSec.style.backgroundSize = "cover";
+        detailsSec.style.backgroundPosition = "center";
+      }
+    }
   }
 
-  // Fetch JSON config properly
   fetch("data/event.json")
     .then(function(res) { return res.json(); })
     .then(function(data) { initApp(data); })
-    .catch(function(err) { console.error("Could not load event.json config:", err); });
+    .catch(function(err) { console.error("Error loading event config:", err); });
 })();
