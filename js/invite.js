@@ -12,7 +12,6 @@
     var footer = CONFIG.footer || {};
     var meta = CONFIG.meta || {};
     var sections = CONFIG.sections || {};
-    var quotes = CONFIG.quotes || [];
     var social = CONFIG.social || {};
 
     function st(id, val) { var el = document.getElementById(id); if (el) el.textContent = val || ""; }
@@ -41,44 +40,32 @@
     if (sections.footer === false) { var ft = document.querySelector("footer"); if (ft) ft.remove(); }
     if (sections.rsvp === false) { rm("rsvp"); }
 
-    if (sched.length) { 
-      sh("schedule-section"); 
-      var sl = document.getElementById("schedule-list"); 
-      if (sl) { 
-        sl.innerHTML = "";
-        sched.forEach(function(it) { 
-          var li = document.createElement("li"); 
-          var dateBadge = it.date ? '<span style="font-size:0.85rem; opacity:0.75; display:block; margin-bottom:2px;">' + it.date + '</span>' : '';
-          li.innerHTML = '<div>' + dateBadge + '<strong>' + (it.time || "") + '</strong></div><span>' + (it.label || "") + '</span>'; 
-          sl.appendChild(li); 
-        }); 
-      } 
-    }
-
-    var qc = document.getElementById("quotes-container");
-    if (quotes.length && qc) { 
-      sh("quotes-section"); 
-      quotes.forEach(function(q) { 
-        if (!q.text) return; 
-        var d = document.createElement("div"); 
-        d.className = "quote-item"; 
-        var pt = document.createElement("p"); 
-        pt.className = "quote-text"; 
-        pt.textContent = q.text; 
-        d.appendChild(pt); 
-        if (q.author) { 
-          var pa = document.createElement("p"); 
-          pa.className = "quote-author"; 
-          pa.textContent = q.author; 
-          d.appendChild(pa); 
-        } 
-        qc.appendChild(d); 
-      }); 
+    // Render schedule items as individual snap sections with dedicated backgrounds
+    if (sched.length) {
+      sh("schedule-section");
+      var scheduleSec = document.getElementById("schedule-section");
+      var container = document.getElementById("schedule-container");
+      if (container) {
+        container.innerHTML = "";
+        sched.forEach(function(it, index) {
+          var itemDiv = document.createElement("div");
+          itemDiv.className = "schedule-item-card";
+          if (it.bg) {
+            itemDiv.style.backgroundImage = "url('" + it.bg + "')";
+          }
+          itemDiv.innerHTML = '<div class="schedule-content">' +
+                              '<span class="schedule-date-badge">' + (it.date || "") + '</span>' +
+                              '<h3 class="schedule-title">' + (it.label || "") + '</h3>' +
+                              '<p class="schedule-time">' + (it.time || "") + '</p>' +
+                              '</div>';
+          container.appendChild(itemDiv);
+        });
+      }
     }
 
     if (meta.countdown && dt.date) { 
       sh("countdown"); 
-      var targetDate = new Date(dt.date + "T" + (dt.startTime || "00:00:00")); 
+      var targetDate = new Date(dt.date + "T" + (dt.startTime || "07:00:00")); 
       if (!isNaN(targetDate.getTime())) { 
         setInterval(function() { 
           var now = new Date(); 
@@ -98,8 +85,8 @@
       if (cl) { 
         var sd = dt.date.replace(/-/g, ""); 
         var ed2 = sd; 
-        var stt = (dt.startTime || "00:00").replace(/ /g, "").replace(":", ""); 
-        var ett = (dt.endTime || dt.startTime || "00:00").replace(/ /g, "").replace(":", ""); 
+        var stt = (dt.startTime || "07:00").replace(/ /g, "").replace(":", ""); 
+        var ett = (dt.endTime || dt.startTime || "07:00").replace(/ /g, "").replace(":", ""); 
         cl.href = "https://www.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(ev.title || "") + "&dates=" + sd + "T" + stt + "00/" + ed2 + "T" + ett + "00&details=" + encodeURIComponent(ev.description || "") + "&location=" + encodeURIComponent((loc.name || "") + ", " + (loc.address || "")); 
       } 
     }
@@ -174,6 +161,15 @@
     if (footer.credits) { 
       st("footer-credits-label", footer.credits.designByLabel ? footer.credits.designByLabel + " " + footer.credits.authorName : ""); 
       st("footer-copyright", "© " + (footer.credits.copyrightYear || new Date().getFullYear())); 
+    }
+
+    if (footer.background) {
+      var footerSec = document.querySelector("footer");
+      if (footerSec) {
+        footerSec.style.backgroundImage = "url('" + footer.background + "')";
+        footerSec.style.backgroundSize = "cover";
+        footerSec.style.backgroundPosition = "center";
+      }
     }
 
     var simpleToggle = document.getElementById("simple-mode-toggle");
