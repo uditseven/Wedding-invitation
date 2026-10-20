@@ -70,7 +70,7 @@
         "enabled": true,
         "loop": true,
         "volume": 0.3,
-        "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-acoustic-guitar-112142.mp3](https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-acoustic-guitar-112142.mp3"
+        "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-acoustic-guitar-112142.mp3"
     },
     "footer": {
         "text": "Your presence and blessings mean the world to us as we begin this new chapter of our lives. We look forward to celebrating together!",
@@ -123,10 +123,83 @@
   if (music.enabled && music.audioUrl) { sh("audio-control"); var ae = new Audio(music.audioUrl); ae.loop = music.loop !== false; ae.volume = music.volume || 0.3; var playing = false; document.getElementById("audio-control").addEventListener("click", function() { if (playing) { ae.pause(); } else { ae.play(); } playing = !playing; }); }
   if (social.instagram) { sh("social-links"); var ig = document.getElementById("instagram-link"); if (ig) { ig.href = social.instagram; var lbl = document.getElementById("instagram-label"); if (lbl) { lbl.textContent = social.instagram.replace(/https?:\/\/(www\.)?instagram\.com\//, "").replace(/\/$/, "") || "Follow on Instagram"; } } }
   st("footer-text", footer.text);
-  if (footer.branding) { var logo = document.getElementById("footer-logo"); if (logo && footer.branding.logoUrl) { logo.src = footer.branding.logoUrl; logo.alt = footer.branding.logoAlt || "Logo"; } var bl = document.getElementById("footer-branding-link"); if (bl && footer.branding.link) { bl.href = footer.branding.link; } }
-  if (footer.credits) { st("footer-credits-label", footer.credits.designByLabel ? footer.credits.designByLabel + " " + footer.credits.authorName : ""); st("footer-copyright", "© " + (footer.credits.copyrightYear || new Date().getFullYear())); st("footer-template-label", footer.credits.templateLabel); var tl = document.getElementById("footer-template-link"); if (tl) { tl.textContent = footer.credits.templateAuthor || ""; tl.href = footer.credits.templateLink || "#"; } var rl = document.getElementById("footer-repo-link"); if (rl) { rl.textContent = footer.credits.repoLabel || ""; rl.href = footer.credits.repoLink || "#"; } if (footer.credits.repoLink) sh("footer-repo-container"); }
+
+  // Handle footer branding safely, removing the wrapper if no logo/link is provided
+  if (footer.branding && (footer.branding.logoUrl || footer.branding.link)) {
+    var logo = document.getElementById("footer-logo");
+    if (logo && footer.branding.logoUrl) {
+      logo.src = footer.branding.logoUrl;
+      logo.alt = footer.branding.logoAlt || "Logo";
+    }
+    var bl = document.getElementById("footer-branding-link");
+    if (bl && footer.branding.link) {
+      bl.href = footer.branding.link;
+    }
+  } else {
+    var brandingDiv = document.querySelector(".footer-branding");
+    var logoElem = document.getElementById("footer-branding-link");
+    if (logoElem) logoElem.remove(); // Removes the empty circular logo element cleanly
+  }
+
+  if (footer.credits) {
+    st("footer-credits-label", footer.credits.designByLabel ? footer.credits.designByLabel + " " + footer.credits.authorName : "");
+    st("footer-copyright", "© " + (footer.credits.copyrightYear || new Date().getFullYear()));
+
+    // Only show template section if template info is present to prevent stray pipes
+    if (footer.credits.templateAuthor || footer.credits.templateLabel) {
+      sh("footer-template-container");
+      st("footer-template-label", footer.credits.templateLabel);
+      var tl = document.getElementById("footer-template-link");
+      if (tl) {
+        tl.textContent = footer.credits.templateAuthor || "";
+        tl.href = footer.credits.templateLink || "#";
+      }
+    }
+
+    var rl = document.getElementById("footer-repo-link");
+    if (rl) {
+      rl.textContent = footer.credits.repoLabel || "";
+      rl.href = footer.credits.repoLink || "#";
+    }
+    if (footer.credits.repoLink) sh("footer-repo-container");
+  }
+
   var simpleToggle = document.getElementById("simple-mode-toggle");
   if (simpleToggle && meta.showSimpleModeToggle !== false) { simpleToggle.hidden = false; simpleToggle.addEventListener("click", function() { document.body.classList.toggle("simple"); }); }
+
   var images = design.heroImages || [];
-  if (images.length) { var hero = document.querySelector(".hero"); if (hero) { var sw = document.createElement("div"); sw.className = "hero-slideshow"; images.forEach(function(url, i) { var slide = document.createElement("div"); slide.className = "hero-slide" + (i === 0 ? " active" : ""); slide.style.backgroundImage = "url(" + url + ")"; sw.appendChild(slide); }); hero.insertBefore(sw, hero.firstChild); if (images.length > 1) { var idx = 0; setInterval(function() { var slides = sw.querySelectorAll(".hero-slide"); slides[idx].classList.remove("active"); idx = (idx + 1) % slides.length; slides[idx].classList.add("active"); }, 5000); } } }
+  if (images.length) {
+    var hero = document.querySelector(".hero");
+    if (hero) {
+      var sw = document.createElement("div");
+      sw.className = "hero-slideshow";
+      images.forEach(function(url, i) {
+        var slide = document.createElement("div");
+        slide.className = "hero-slide" + (i === 0 ? " active" : "");
+        slide.style.backgroundImage = "url(" + url + ")";
+        sw.appendChild(slide);
+      });
+      hero.insertBefore(sw, hero.firstChild);
+      if (images.length > 1) {
+        var idx = 0;
+        setInterval(function() {
+          var slides = sw.querySelectorAll(".hero-slide");
+          slides[idx].classList.remove("active");
+          idx = (idx + 1) % slides.length;
+          slides[idx].classList.add("active");
+        }, 5000);
+      }
+    }
+  }
+
+  // Handle section backgrounds dynamically if provided
+  var secBackgrounds = design.sectionBackgrounds || [];
+  if (secBackgrounds.length > 0) {
+    var detailsSec = document.querySelector(".event-details");
+    if (detailsSec && secBackgrounds[0]) {
+      detailsSec.style.backgroundImage = "url(" + secBackgrounds[0] + ")";
+      detailsSec.style.backgroundSize = "cover";
+      detailsSec.style.backgroundPosition = "center";
+    }
+  }
 })();
