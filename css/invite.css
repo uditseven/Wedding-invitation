@@ -99,14 +99,12 @@ section > *, footer > * {
     width: 100%;
 }
 
-/* Hero Section Layout: Countdown anchored at top, names/actions at bottom */
 .hero {
     justify-content: space-between !important;
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
 }
 
-/* Rectangular Glass Countdown at the Top */
 .countdown {
     background: rgba(20, 20, 20, 0.65);
     backdrop-filter: blur(16px);
@@ -222,7 +220,6 @@ section > *, footer > * {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Schedule section cards */
 #schedule-section {
     padding: 0;
 }
@@ -304,7 +301,6 @@ section > *, footer > * {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Glassmorphism Audio Unlock Overlay */
 .overlay-container {
     position: fixed;
     inset: 0;
@@ -362,9 +358,10 @@ section > *, footer > * {
     text-align: center;
 }
 
-.audio-fab, .accessibility-fab {
+.audio-fab {
     position: fixed;
     bottom: 2rem;
+    right: 2rem;
     width: 52px;
     height: 52px;
     border-radius: 50%;
@@ -383,25 +380,12 @@ section > *, footer > * {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-.audio-fab {
-    right: 2rem;
-}
-
-.accessibility-fab {
-    left: 2rem;
-}
-
 @media(max-width: 768px) {
-    .audio-fab, .accessibility-fab {
+    .audio-fab {
         width: 44px;
         height: 44px;
         bottom: max(1.25rem, env(safe-area-inset-bottom));
-    }
-    .audio-fab {
         right: 1.25rem;
-    }
-    .accessibility-fab {
-        left: 1.25rem;
     }
 }
 
@@ -432,51 +416,4 @@ section > *, footer > * {
     background: currentColor;
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E") center/contain no-repeat;
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E") center/contain no-repeat;
-}
-
-body.simple #venue-name::before {
-    background: #555;
-}
-
-body.simple {
-    overflow-y: auto !important;
-    background: #fbfbfb !important;
-    color: #1a1a1a !important;
-}
-
-body.simple #app {
-    scroll-snap-type: none !important;
-    height: auto !important;
-    overflow-y: visible !important;
-    max-width: 800px;
-    margin: 0 auto !important;
-    padding: 2rem 1rem !important;
-}
-
-body.simple section, body.simple footer {
-    height: auto !important;
-    min-height: auto !important;
-    padding: 3rem 2rem !important;
-    margin-bottom: 2rem !important;
-    background: #fff !important;
-    color: #1a1a1a !important;
-    border-radius: 24px !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
-    text-align: left !important;
-    align-items: flex-start !important;
-}
-
-body.simple section::before, body.simple footer::before {
-    display: none !important;
-}
-
-body.simple h1 {
-    font-size: clamp(3rem, 10vw, 4rem) !important;
-    color: #000 !important;
-    text-shadow: none !important;
-}
-
-body.simple .hero-slideshow {
-    display: none !important;
 }
