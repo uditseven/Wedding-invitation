@@ -43,11 +43,10 @@
     // Render schedule items as individual snap sections with dedicated backgrounds
     if (sched.length) {
       sh("schedule-section");
-      var scheduleSec = document.getElementById("schedule-section");
       var container = document.getElementById("schedule-container");
       if (container) {
         container.innerHTML = "";
-        sched.forEach(function(it, index) {
+        sched.forEach(function(it) {
           var itemDiv = document.createElement("div");
           itemDiv.className = "schedule-item-card";
           if (it.bg) {
@@ -63,20 +62,37 @@
       }
     }
 
-    if (meta.countdown && dt.date) { 
-      sh("countdown"); 
-      var targetDate = new Date(dt.date + "T" + (dt.startTime || "07:00:00")); 
-      if (!isNaN(targetDate.getTime())) { 
-        setInterval(function() { 
-          var now = new Date(); 
-          var diff = targetDate - now; 
-          if (diff <= 0) { hi("countdown"); return; } 
-          st("cd-days", Math.floor(diff / 86400000)); 
-          st("cd-hours", String(Math.floor((diff % 86400000) / 3600000)).padStart(2, "0")); 
-          st("cd-minutes", String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0")); 
-          st("cd-seconds", String(Math.floor((diff % 60000) / 1000)).padStart(2, "0")); 
-        }, 1000); 
-      } 
+    // Countdown target defaults to the first scheduled event date/time or fallback to datetime config
+    if (meta.countdown) {
+      sh("countdown");
+      var targetDateStr = dt.date;
+      var targetTimeStr = dt.startTime || "04:00:00";
+      
+      if (sched.length && sched[0].date) {
+        // Parse date format like "30th Nov 2026, Monday" or use ISO date
+        if (sched[0].date.includes("30th Nov 2026")) {
+          targetDateStr = "2026-11-30";
+          targetTimeStr = "04:00 PM";
+        }
+      }
+
+      var targetDate = new Date(targetDateStr + "T" + (targetTimeStr.replace(" PM", "").replace(" AM", "") + ":00"));
+      if (isNaN(targetDate.getTime())) {
+        targetDate = new Date("2026-11-30T16:00:00");
+      }
+
+      setInterval(function() {
+        var now = new Date();
+        var diff = targetDate - now;
+        if (diff <= 0) {
+          hi("countdown");
+          return;
+        }
+        st("cd-days", Math.floor(diff / 86400000));
+        st("cd-hours", String(Math.floor((diff % 86400000) / 3600000)).padStart(2, "0"));
+        st("cd-minutes", String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0"));
+        st("cd-seconds", String(Math.floor((diff % 60000) / 1000)).padStart(2, "0"));
+      }, 1000);
     }
 
     if (dt.date) { 
@@ -85,8 +101,8 @@
       if (cl) { 
         var sd = dt.date.replace(/-/g, ""); 
         var ed2 = sd; 
-        var stt = (dt.startTime || "07:00").replace(/ /g, "").replace(":", ""); 
-        var ett = (dt.endTime || dt.startTime || "07:00").replace(/ /g, "").replace(":", ""); 
+        var stt = (dt.startTime || "04:00").replace(/ /g, "").replace(":", ""); 
+        var ett = (dt.endTime || dt.startTime || "04:00").replace(/ /g, "").replace(":", ""); 
         cl.href = "https://www.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(ev.title || "") + "&dates=" + sd + "T" + stt + "00/" + ed2 + "T" + ett + "00&details=" + encodeURIComponent(ev.description || "") + "&location=" + encodeURIComponent((loc.name || "") + ", " + (loc.address || "")); 
       } 
     }
