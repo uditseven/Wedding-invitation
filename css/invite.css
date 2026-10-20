@@ -189,7 +189,7 @@ section > *, footer > * {
     opacity: .7;
 }
 
-/* Schedule section cards supporting snap scrolling and background images */
+/* Schedule section cards supporting snap scrolling and responsive background images */
 #schedule-section {
     padding: 0;
 }
@@ -217,6 +217,13 @@ section > *, footer > * {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+    section, footer, .schedule-item-card {
+        background-attachment: scroll;
+        background-position: center center;
+    }
 }
 
 .schedule-item-card::before {
@@ -258,7 +265,7 @@ section > *, footer > * {
     color: rgba(255, 255, 255, 0.9);
 }
 
-/* Glassmorphism Audio Unlock Overlay with custom background */
+/* Glassmorphism Audio Unlock Overlay */
 .overlay-container {
     position: fixed;
     inset: 0;
