@@ -111,6 +111,7 @@ section > *, footer > * {
     inset: 0;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
 }
@@ -188,27 +189,80 @@ section > *, footer > * {
     opacity: .7;
 }
 
-#schedule-list {
-    list-style: none;
+/* Schedule section cards supporting snap scrolling and background images */
+#schedule-section {
     padding: 0;
-    text-align: left;
 }
 
-#schedule-list li {
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+.schedule-container {
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
 }
 
-/* Glassmorphism Audio Unlock Overlay */
+.schedule-item-card {
+    height: 100vh;
+    min-height: 600px;
+    scroll-snap-align: start;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.schedule-item-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65));
+    z-index: 1;
+}
+
+.schedule-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    width: 100%;
+}
+
+.schedule-date-badge {
+    display: inline-block;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
+}
+
+.schedule-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.schedule-time {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Glassmorphism Audio Unlock Overlay with custom background */
 .overlay-container {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.AJ4QXz4aYK1convZqcVuFwHaKX%3Fpid%3DApi&f=1&ipt=8bd8b715830a1f43966736d02b194cd6b92ca0cb19aecd6a3b545f5d8eefa94d&ipo=images') center/cover no-repeat;
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -218,8 +272,18 @@ section > *, footer > * {
     transition: opacity 0.5s ease;
 }
 
+.overlay-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1;
+}
+
 .overlay-card {
-    background: rgba(20, 20, 20, 0.65);
+    position: relative;
+    z-index: 2;
+    background: rgba(20, 20, 20, 0.7);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(255, 255, 255, 0.2);
