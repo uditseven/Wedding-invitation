@@ -40,7 +40,6 @@
     if (sections.footer === false) { var ft = document.querySelector("footer"); if (ft) ft.remove(); }
     if (sections.rsvp === false) { rm("rsvp"); }
 
-    // Render schedule items as individual snap sections with dedicated backgrounds and location support
     if (sched.length) {
       sh("schedule-section");
       var container = document.getElementById("schedule-container");
@@ -52,7 +51,7 @@
           if (it.bg) {
             itemDiv.style.backgroundImage = "url('" + it.bg + "')";
           }
-          var locationHtml = it.location ? '<p class="schedule-location" style="margin-top:0.5rem; font-size:1rem; opacity:0.85;">📍 ' + it.location + '</p>' : '';
+          var locationHtml = it.location ? '<p class="schedule-location" style="margin-top:0.4rem; font-size:0.95rem; opacity:0.85;">📍 ' + it.location + '</p>' : '';
           itemDiv.innerHTML = '<div class="schedule-content">' +
                               '<span class="schedule-date-badge">' + (it.date || "") + '</span>' +
                               '<h3 class="schedule-title">' + (it.label || "") + '</h3>' +
