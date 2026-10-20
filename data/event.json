@@ -10,19 +10,14 @@
         "hero": true,
         "eventDetails": true,
         "schedule-section": true,
-        "quotes-section": true,
+        "quotes-section": false,
         "location-section": true,
         "design-section": true,
         "music-section": true,
         "rsvp": false,
         "footer": true
     },
-    "quotes": [
-        {
-            "text": "Grow old along with me! The best is yet to be..",
-            "author": "Robert Browning"
-        }
-    ],
+    "quotes": [],
     "social": {
         "instagram": "https://www.instagram.com/udit_seven/"
     },
@@ -33,7 +28,7 @@
     },
     "datetime": {
         "date": "2026-12-03",
-        "startTime": "06:00 PM",
+        "startTime": "07:00 PM",
         "endTime": "",
         "timezone": "local",
         "allDay": false
@@ -45,24 +40,28 @@
     },
     "schedule": [
         {
-            "date": "2026-12-02",
-            "time": "04:00 PM",
-            "label": "Haldi & Sangeet Ceremony"
+            "date": "30th Nov 2026, Monday",
+            "time": "04:00 PM onwards",
+            "label": "Sangeet, Tilak & Engagement Ceremony",
+            "bg": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.WYQrZi5tYMj0q0oE4pC1CwHaEM%3Fr%3D0%26pid%3DApi&f=1&ipt=397c0c9d3218137a18a9c88b5de3971baa5ed2fde27f2d374b989711cb3eb3ae&ipo=images"
         },
         {
-            "date": "2026-12-03",
-            "time": "06:00 PM",
-            "label": "Guest Arrival & Welcome"
+            "date": "2nd Dec 2026, Wednesday",
+            "time": "10:00 AM onwards",
+            "label": "Haldi Matkor",
+            "bg": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%2Fid%2FOIP.qNtbULG6udMYAYKmA8MGbQHaE7%3Fr%3D0%26pid%3DApi&f=1&ipt=5302cf7471142e0a8d9e6e79ab53686b111d84854a9c70eb4b7be8669726d61a&ipo=images"
         },
         {
-            "date": "2026-12-03",
-            "time": "07:30 PM",
-            "label": "Wedding Ceremony"
+            "date": "3rd Dec 2026, Thursday",
+            "time": "07:00 PM onwards",
+            "label": "Wedding Ceremony",
+            "bg": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%2Fid%2FOIP.vjyJ9LxPtyVRa3Brt4TTHAHaFS%3Fr%3D0%26pid%3DApi&f=1&ipt=832918220e56d6f7d21b35464fe740061e2d7de4ffa27ed7f29d120e3e65cc64&ipo=images"
         },
         {
-            "date": "2026-12-03",
-            "time": "09:00 PM",
-            "label": "Dinner & Celebration"
+            "date": "5th Dec 2026, Saturday",
+            "time": "08:00 PM onwards",
+            "label": "Dinner & Reception",
+            "bg": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.cNC_LSD6FHakoqgoqA6XzAHaE8%3Fr%3D0%26pid%3DApi&f=1&ipt=9cbd8c931d1625ff14111c6cb391dab3d1fc716aa6d248a9516a67591315a8d0&ipo=images"
         }
     ],
     "rsvp": {
@@ -97,6 +96,7 @@
             "designByLabel": "Created & Designed by",
             "copyrightYear": "2026",
             "authorName": "Udit & Jagriti"
-        }
+        },
+        "background": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%2Fid%2FOIP.9CXqLEYoxGxBRRFrXEOXiAHaE8%3Fr%3D0%26pid%3DApi&f=1&ipt=51a984cc27337d8509b433cee9a0ec10c550e26b003236f5a9526fc250497fdd&ipo=images"
     }
 }
