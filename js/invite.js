@@ -70,20 +70,10 @@
     },
     "footer": {
         "text": "Your presence and blessings mean the world to us as we begin this new chapter of our lives. We look forward to celebrating together!",
-        "branding": {
-            "link": "#",
-            "logoUrl": "https://raw.githubusercontent.com/Rainier-PS/rainier-ps.github.io/main/images/site/Rainier%20Logo-Primary.svg",
-            "logoAlt": "Logo"
-        },
         "credits": {
             "designByLabel": "Created & Designed by",
             "copyrightYear": "2026",
-            "authorName": "Udit & Jagriti",
-            "templateLabel": "Template by",
-            "templateAuthor": "Rainier Pearson Saputra",
-            "templateLink": "https://rainier-ps.github.io/",
-            "repoLabel": "Open Repository",
-            "repoLink": "https://github.com/Rainier-PS/Invitation-Template"
+            "authorName": "Udit & Jagriti"
         }
     }
 };
