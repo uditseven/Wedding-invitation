@@ -85,7 +85,7 @@
       sh("calendar-actions"); 
       var cl = document.getElementById("google-calendar-link"); 
       if (cl) { 
-        var sd = dt.date.replace(/-/g, ""); 
+        var sd = "20261130"; 
         var ed2 = sd; 
         var stt = (dt.startTime || "04:00").replace(/ /g, "").replace(":", ""); 
         var ett = (dt.endTime || dt.startTime || "04:00").replace(/ /g, "").replace(":", ""); 
