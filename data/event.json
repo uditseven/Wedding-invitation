@@ -43,7 +43,28 @@
         "address": "Gandak Road, Sakchi",
         "mapsLink": "https://maps.app.goo.gl/zE3unFEuXVQGDQE19"
     },
-    "schedule": [],
+    "schedule": [
+        {
+            "date": "2026-12-02",
+            "time": "04:00 PM",
+            "label": "Haldi & Sangeet Ceremony"
+        },
+        {
+            "date": "2026-12-03",
+            "time": "06:00 PM",
+            "label": "Guest Arrival & Welcome"
+        },
+        {
+            "date": "2026-12-03",
+            "time": "07:30 PM",
+            "label": "Wedding Ceremony"
+        },
+        {
+            "date": "2026-12-03",
+            "time": "09:00 PM",
+            "label": "Dinner & Celebration"
+        }
+    ],
     "rsvp": {
         "enabled": false,
         "url": ""
@@ -68,7 +89,7 @@
         "enabled": true,
         "loop": true,
         "volume": 0.3,
-        "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-acoustic-guitar-112142.mp3](https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-acoustic-guitar-112142.mp3"
+        "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-acoustic-guitar-112142.mp3"
     },
     "footer": {
         "text": "Your presence and blessings mean the world to us as we begin this new chapter of our lives. We look forward to celebrating together!",
