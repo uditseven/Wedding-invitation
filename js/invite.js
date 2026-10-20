@@ -40,7 +40,7 @@
     if (sections.footer === false) { var ft = document.querySelector("footer"); if (ft) ft.remove(); }
     if (sections.rsvp === false) { rm("rsvp"); }
 
-    // Render schedule items as individual snap sections with dedicated backgrounds
+    // Render schedule items as individual snap sections with dedicated backgrounds and location support
     if (sched.length) {
       sh("schedule-section");
       var container = document.getElementById("schedule-container");
@@ -52,34 +52,21 @@
           if (it.bg) {
             itemDiv.style.backgroundImage = "url('" + it.bg + "')";
           }
+          var locationHtml = it.location ? '<p class="schedule-location" style="margin-top:0.5rem; font-size:1rem; opacity:0.85;">📍 ' + it.location + '</p>' : '';
           itemDiv.innerHTML = '<div class="schedule-content">' +
                               '<span class="schedule-date-badge">' + (it.date || "") + '</span>' +
                               '<h3 class="schedule-title">' + (it.label || "") + '</h3>' +
                               '<p class="schedule-time">' + (it.time || "") + '</p>' +
+                              locationHtml +
                               '</div>';
           container.appendChild(itemDiv);
         });
       }
     }
 
-    // Countdown target defaults to the first scheduled event date/time or fallback to datetime config
     if (meta.countdown) {
       sh("countdown");
-      var targetDateStr = dt.date;
-      var targetTimeStr = dt.startTime || "04:00:00";
-      
-      if (sched.length && sched[0].date) {
-        // Parse date format like "30th Nov 2026, Monday" or use ISO date
-        if (sched[0].date.includes("30th Nov 2026")) {
-          targetDateStr = "2026-11-30";
-          targetTimeStr = "04:00 PM";
-        }
-      }
-
-      var targetDate = new Date(targetDateStr + "T" + (targetTimeStr.replace(" PM", "").replace(" AM", "") + ":00"));
-      if (isNaN(targetDate.getTime())) {
-        targetDate = new Date("2026-11-30T16:00:00");
-      }
+      var targetDate = new Date("2026-11-30T16:00:00");
 
       setInterval(function() {
         var now = new Date();
