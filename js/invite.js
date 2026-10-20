@@ -41,7 +41,7 @@
     if (sections.footer === false) { var ft = document.querySelector("footer"); if (ft) ft.remove(); }
     if (sections.rsvp === false) { rm("rsvp"); }
 
-    // Fully populate all schedule dates and activities
+    // Populate all schedule events and activities across days
     if (sched.length) { 
       sh("schedule-section"); 
       var sl = document.getElementById("schedule-list"); 
@@ -49,7 +49,7 @@
         sl.innerHTML = "";
         sched.forEach(function(it) { 
           var li = document.createElement("li"); 
-          var dateBadge = it.date ? '<span style="font-size:0.85rem; opacity:0.7; display:block; margin-bottom:2px;">' + it.date + '</span>' : '';
+          var dateBadge = it.date ? '<span style="font-size:0.85rem; opacity:0.75; display:block; margin-bottom:2px;">' + it.date + '</span>' : '';
           li.innerHTML = '<div>' + dateBadge + '<strong>' + (it.time || "") + '</strong></div><span>' + (it.label || "") + '</span>'; 
           sl.appendChild(li); 
         }); 
@@ -105,7 +105,7 @@
       } 
     }
 
-    // Audio handling with overlay permission unlock
+    // Fully working Audio & Overlay Unlock Handlers
     if (music.enabled && music.audioUrl) { 
       sh("audio-control"); 
       var ae = new Audio(music.audioUrl); 
@@ -114,22 +114,27 @@
       var playing = false; 
       var audioBtn = document.getElementById("audio-control");
       var overlay = document.getElementById("audio-overlay");
+      var openBtn = document.getElementById("open-invite-btn");
 
-      function startAudio() {
+      function unlockAudio() {
         ae.play().then(function() {
           playing = true;
           audioBtn.style.opacity = "1";
         }).catch(function(err) {
-          console.log("Audio play deferred:", err);
+          console.log("Audio autoplay prevented:", err);
         });
+
         if (overlay) {
           overlay.style.opacity = "0";
           setTimeout(function() { overlay.remove(); }, 500);
         }
       }
 
+      if (openBtn) {
+        openBtn.addEventListener("click", unlockAudio);
+      }
       if (overlay) {
-        overlay.addEventListener("click", startAudio);
+        overlay.addEventListener("click", unlockAudio);
       }
 
       audioBtn.addEventListener("click", function(e) { 
@@ -173,6 +178,7 @@
       }); 
     }
 
+    // Hero image slideshow handling
     var images = design.heroImages || [];
     if (images.length) { 
       var hero = document.querySelector(".hero"); 
@@ -182,7 +188,7 @@
         images.forEach(function(url, i) { 
           var slide = document.createElement("div"); 
           slide.className = "hero-slide" + (i === 0 ? " active" : ""); 
-          slide.style.backgroundImage = "url(" + url + ")"; 
+          slide.style.backgroundImage = "url('" + url + "')"; 
           sw.appendChild(slide); 
         }); 
         hero.insertBefore(sw, hero.firstChild); 
@@ -198,11 +204,12 @@
       } 
     }
 
+    // Section background handling
     var secBackgrounds = design.sectionBackgrounds || [];
     if (secBackgrounds.length > 0) {
       var detailsSec = document.querySelector(".event-details");
       if (detailsSec && secBackgrounds[0]) {
-        detailsSec.style.backgroundImage = "url(" + secBackgrounds[0] + ")";
+        detailsSec.style.backgroundImage = "url('" + secBackgrounds[0] + "')";
         detailsSec.style.backgroundSize = "cover";
         detailsSec.style.backgroundPosition = "center";
       }
