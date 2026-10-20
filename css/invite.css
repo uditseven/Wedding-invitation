@@ -1,9 +1,20 @@
+:root {
+    --primary-font: 'Outfit', sans-serif;
+    --accent-font: 'Cormorant Garamond', serif;
+    --bg-color: #fdfbf7;
+    --text-color: #2c2c2c;
+    --accent-color: #6366f1;
+}
+
 html, body {
     width: 100%;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     box-sizing: border-box;
+    font-family: var(--primary-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 *, *:before, *:after {
@@ -24,12 +35,22 @@ html, body {
     background-repeat: no-repeat;
     padding: 2rem;
     box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .hero h1 {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-family: var(--accent-font);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin: 0 0 0.5rem 0;
     word-wrap: break-word;
     max-width: 100%;
+}
+
+.hero .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    margin-bottom: 2rem;
+    max-width: 600px;
 }
 
 .hero-slideshow {
@@ -51,7 +72,7 @@ html, body {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1.2s ease-in-out;
 }
 
 .hero-slide.active {
@@ -60,38 +81,56 @@ html, body {
 
 .section {
     width: 100%;
-    max-width: 800px;
+    max-width: 750px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.section h2 {
+    font-family: var(--accent-font);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
 }
 
 .countdown-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .countdown-unit {
-    min-width: 65px;
-    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    min-width: 70px;
+}
+
+.countdown-unit strong {
+    display: block;
+    font-size: 1.5rem;
 }
 
 #schedule-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: left;
 }
 
 #schedule-list li {
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.85);
-    padding: 1rem;
+    background: #ffffff;
+    padding: 1.25rem;
     margin-bottom: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    text-align: left;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--accent-color);
 }
 
 @media (min-width: 600px) {
@@ -102,8 +141,37 @@ html, body {
     }
 }
 
+.audio-fab, .accessibility-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.audio-fab:hover, .accessibility-fab:hover {
+    transform: scale(1.05);
+}
+
+.accessibility-fab {
+    right: 80px;
+}
+
 footer {
     width: 100%;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
     text-align: center;
+    background: #f4efe6;
+    font-size: 0.9rem;
+    color: #666;
 }
