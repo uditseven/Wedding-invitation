@@ -47,14 +47,22 @@
     },
     "schedule": [
         {
+            "date": "2026-12-02",
+            "time": "04:00 PM",
+            "label": "Haldi & Sangeet Ceremony"
+        },
+        {
+            "date": "2026-12-03",
             "time": "06:00 PM",
             "label": "Guest Arrival & Welcome"
         },
         {
+            "date": "2026-12-03",
             "time": "07:30 PM",
             "label": "Wedding Ceremony"
         },
         {
+            "date": "2026-12-03",
             "time": "09:00 PM",
             "label": "Dinner & Celebration"
         }
@@ -140,7 +148,8 @@
     if (sl) { 
       sched.forEach(function(it) { 
         var li = document.createElement("li"); 
-        li.innerHTML = "<span>" + (it.time || "") + "</span><span>" + (it.label || "") + "</span>"; 
+        var datePrefix = it.date ? "<strong>[" + it.date + "]</strong> " : "";
+        li.innerHTML = "<div>" + datePrefix + "<span>" + (it.time || "") + "</span></div><span>" + (it.label || "") + "</span>"; 
         sl.appendChild(li); 
       }); 
     } 
@@ -167,27 +176,13 @@
     }); 
   }
 
-  if (rsvp.enabled && rsvp.url) { 
-    var emb = document.querySelector(".form-embed"); 
-    if (emb) { 
-      var ifr = document.createElement("iframe"); 
-      ifr.src = rsvp.url; 
-      ifr.style.width = "100%"; 
-      ifr.style.border = "none"; 
-      ifr.style.minHeight = "400px"; 
-      emb.appendChild(ifr); 
-    } 
-  } else { 
-    if (sections.rsvp !== false) rm("rsvp"); 
-  }
-
   if (meta.countdown && dt.date) { 
     sh("countdown"); 
-    var ed = new Date(dt.date + "T" + (dt.startTime || "00:00:00")); 
-    if (!isNaN(ed.getTime())) { 
+    var targetDate = new Date(dt.date + "T" + (dt.startTime || "00:00:00")); 
+    if (!isNaN(targetDate.getTime())) { 
       setInterval(function() { 
         var now = new Date(); 
-        var diff = ed - now; 
+        var diff = targetDate - now; 
         if (diff <= 0) { hi("countdown"); return; } 
         st("cd-days", Math.floor(diff / 86400000)); 
         st("cd-hours", String(Math.floor((diff % 86400000) / 3600000)).padStart(2, "0")); 
@@ -244,19 +239,13 @@
 
   st("footer-text", footer.text);
 
-  if (footer.branding && (footer.branding.logoUrl || footer.branding.link)) {
-    var logo = document.getElementById("footer-logo"); 
-    if (logo && footer.branding.logoUrl) { 
-      logo.src = footer.branding.logoUrl; 
-      logo.alt = footer.branding.logoAlt || "Logo"; 
-    }
-    var bl = document.getElementById("footer-branding-link"); 
-    if (bl && footer.branding.link) { 
-      bl.href = footer.branding.link; 
-    }
-  } else {
-    var logoElem = document.getElementById("footer-branding-link");
-    if (logoElem) logoElem.remove();
+  var logoElem = document.getElementById("footer-branding-link");
+  if (logoElem && footer.branding && footer.branding.logoUrl) {
+    var logo = document.getElementById("footer-logo");
+    if (logo) { logo.src = footer.branding.logoUrl; logo.alt = footer.branding.logoAlt || "Logo"; }
+    logoElem.href = footer.branding.link || "#";
+  } else if (logoElem) {
+    logoElem.remove();
   }
 
   if (footer.credits) { 
@@ -272,13 +261,6 @@
         tl.href = footer.credits.templateLink || "#"; 
       }
     }
-    
-    var rl = document.getElementById("footer-repo-link"); 
-    if (rl) { 
-      rl.textContent = footer.credits.repoLabel || ""; 
-      rl.href = footer.credits.repoLink || "#"; 
-    } 
-    if (footer.credits.repoLink) sh("footer-repo-container"); 
   }
 
   var simpleToggle = document.getElementById("simple-mode-toggle");
@@ -312,15 +294,5 @@
         }, 5000); 
       } 
     } 
-  }
-
-  var secBackgrounds = design.sectionBackgrounds || [];
-  if (secBackgrounds.length > 0) {
-    var detailsSec = document.querySelector(".event-details");
-    if (detailsSec && secBackgrounds[0]) {
-      detailsSec.style.backgroundImage = "url(" + secBackgrounds[0] + ")";
-      detailsSec.style.backgroundSize = "cover";
-      detailsSec.style.backgroundPosition = "center";
-    }
   }
 })();
