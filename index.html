@@ -2,27 +2,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Udit weds Jagriti</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/invite.css">
 <script async src="https://tally.so/widgets/embed.js"></script>
 </head>
 <body>
-<button id="simple-mode-toggle" class="accessibility-fab" hidden>
+
+<button id="simple-mode-toggle" class="accessibility-fab" hidden aria-label="Toggle Simple Mode">
 <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
 <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
 </svg>
 </button>
-<button id="audio-control" class="audio-fab" hidden>
+
+<button id="audio-control" class="audio-fab" hidden aria-label="Play Music">
 <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
 <path d="M8 5v14l11-7z"/>
 <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
 </svg>
 </button>
+
 <main id="app" aria-live="polite">
 <section class="hero">
 <h1 id="event-title">Loading…</h1>
@@ -40,6 +43,7 @@
 <a id="google-calendar-link" target="_blank" rel="noopener">Add to Google Calendar</a>
 </div></div>
 </section>
+
 <section class="section event-details">
 <h2>Event Details</h2>
 <div class="event-datetime">
@@ -53,31 +57,35 @@
 <a id="maps-link" target="_blank" rel="noopener">Open in Google Maps</a>
 </address>
 </section>
+
 <section class="section" id="schedule-section" hidden>
 <h2>Schedule & Activities</h2>
 <ul id="schedule-list"></ul>
 </section>
+
 <section class="section" id="quotes-section" hidden>
 <h2>Words of Inspiration</h2>
 <div class="quotes-container" id="quotes-container"></div>
 </section>
+
 <footer>
+<div class="footer-branding">
 <div class="footer-info">
 <p class="hosted-by" id="footer-credits-label"></p>
 <p class="copyright">
 <span id="footer-copyright"></span>
 <span id="footer-template-container" hidden> | <span id="footer-template-label"></span> <a id="footer-template-link" href="#"></a></span>
 </p>
-    <div class="social-links" id="social-links" hidden>
-        <a id="instagram-link" class="social-link" target="_blank" rel="noopener">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-            </svg>
-        </a>
-        <span id="instagram-label">Follow on Instagram</span>
-    </div>
+<p id="footer-repo-container" class="repo-info" hidden>
+<a id="footer-repo-link" href="#"></a>
+</p>
+<div class="social-links" id="social-links" hidden>
+<a id="instagram-link" class="social-link" target="_blank" rel="noopener">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+</a>
+<span id="instagram-label">Follow on Instagram</span>
+</div>
+</div>
 </div>
 <p id="footer-text"></p>
 </footer>
